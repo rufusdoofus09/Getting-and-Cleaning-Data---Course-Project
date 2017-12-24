@@ -7,6 +7,7 @@ library(rstudioapi)
 library(rlang)
 library(assertthat)
 PROJECT_DIR <- getActiveProject()
+if (is.null(PROJECT_DIR)) PROJECT_DIR<-getwd()
 
 dataDir <- file.path(PROJECT_DIR,"../data")
 dataSet_rootDir <- file.path(dataDir,"UCI HAR Dataset")
@@ -113,8 +114,11 @@ tidyData <- function (dataSet_rootDir)
 
   # Export tidy data frame to parent environment
   assign("myTidyData",myTidyData)
+  # Group, sort and export tidy data frame to parent environment
+  myTidyData %>% group_by(subject,activity_name) %>% arrange(.by_group = T)-> grouped_tidyData
+  assign("grouped_tidyData",grouped_tidyData)
   # Write CSV file for tidy data set
-  write.csv(myTidyData,"tidyData.csv",row.names = F)
+  write.csv(grouped_tidyData,"tidyData.csv",row.names = F)
   return(myTidyData)
 }
 
@@ -197,7 +201,9 @@ tidyData_summary <- function(groupedData,dataSet_rootDir)
   return(summary)
 }
 
-
+if (!file.exists(dataSet_rootDir))
+  get_rawData(dataDir,dataSet_rootDir)
+  
 tidyCSV <-   file.path(dataSet_rootDir,dataSet_allDir,"tidyData.csv")
 if (!exists("myTidyData"))
 {
@@ -212,8 +218,7 @@ if (!exists("myTidyData"))
 
 if (!exists("grouped_tidyData"))
 {
-  tidyData_tbl <- tbl_df(myTidyData)
-  tidyData_tbl %>% group_by(subject,activity_name) -> grouped_tidyData
+  myTidyData %>% group_by(subject,activity_name) %>% arrange(.by_group = T)-> grouped_tidyData
 }
 
 tidy_summaryCSV <-   file.path(dataSet_rootDir,dataSet_allDir,"tidyData_sumary.csv")
@@ -228,3 +233,4 @@ if (!exists("myTidyData_summary"))
   }
 }
 
+print(paste("All done - results in",tidyCSV,"and",tidy_summaryCSV))
