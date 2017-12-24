@@ -23,7 +23,7 @@ The experiments have been carried out with a group of 30 volunteers within an ag
 - 'tidyData_summary.csv': CSV file containing second data set with average values.
 
 ### R program description
-The program consists of 4 functions running the main steps followed by code which ties them all together, checking whihc parts have been done already. This is so that I didn't have to download the data file every time I modified the script, for example.
+The program consists of 4 functions running the main steps followed by code which ties them all together, checking which parts have been done already. This is so that I didn't have to download the data file every time I modified the script, for example.
 
 #### function get_rawData(dataDir,dataSet_rootDir) - read in original data
 - Download data zip file, unzip and get rid of extraneous stuff
@@ -43,9 +43,7 @@ The program consists of 4 functions running the main steps followed by code whic
   - change remaining "(", ")" and "," to "_" 
   - change order of mean|std and x|y|z and change "-" to "." , 
 so "fBodyGyro-mean()-Y"" -> "fbodygyro_ mean_y" -> "fbodygyro_y.mean"
-
 This is so that I could split up by measurement name and axis and function (although I won't)
-
 - Finally read all data in. 
 - Add subject column and activity_name column to dataset
 - Group, sort and export tidy data frame to parent environment
@@ -72,7 +70,7 @@ This is so that I could split up by measurement name and axis and function (alth
 - Add combined column list to summary (subject and activity columns) as data frame
 - Write CSV file for tidy data set summary
 
-## Main program
+### Main program
 - call get_rawData() if necessary
 - call tidyData() if necessary
 - group myTidyData if necessary
