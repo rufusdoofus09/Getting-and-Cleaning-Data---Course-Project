@@ -9,18 +9,18 @@ from original data set README.txt:
 
 The sensor signals (accelerometer and gyroscope) were pre-processed by applying noise filters and then sampled in fixed-width sliding windows of 2.56 sec and 50% overlap (128 readings/window). The sensor acceleration signal, which has gravitational and body motion components, was separated using a Butterworth low-pass filter into body acceleration and gravity. The gravitational force is assumed to have only low frequency components, therefore a filter with 0.3 Hz cutoff frequency was used. From each window, a vector of features was obtained by calculating variables from the time and frequency domain. See 'features_info.txt' for more details. "
 
-####Notes: 
+#### Notes: 
 - Measurements are normalized and bounded within [-1,1].
 - The units used for the accelerations (total and body) are 'g's (gravity of earth -> 9.80665 m/seg2).
 - The gyroscope units are rad/seg.
 
 
 
-## Description of Variables  -- modified data set (tidyData.csv)
+## Description of Variables  -- modified data set ([tidyData.csv](tidyData.csv))
 Data consists of a total of 10299 observations of 30 subjects performing 
 each of 6 activities. There are no "NA" values.
 
-#####For each observation:
+#### For each observation:
 - An identifier of the subject who carried out the experiment.
 - The activity label. 
 - A 66 measurement vector with mean and standard deviation of time and frequency domain variables. 
@@ -30,11 +30,11 @@ Name						|Type				|Values					|Description
 ----------------|-----------|---------------|-----------
 subject         |Integer		|1-30				    |Subject number 
 activity_name   |Factor			|walking        |Activity being performed.    
--							|					|walking_upstairs  | original data set used
--							|					|walking_downstairs| integer values or 1-6
--							|					|sitting           | These were modifed to
--							|					|standing          | be the activity name
--							|					|laying            	|	
+_							|					|walking_upstairs  | original data set used
+_							|					|walking_downstairs| integer values or 1-6
+_							|					|sitting           | These were modifed to
+_							|					|standing          | be the activity name
+_							|					|laying            	|	
 tbodyacc_x.mean   |Double				|-1.0 - 1.0				| See features_info.txt for
 tbodyacc_y.mean   |Double			|-1.0 - 1.0	 | explanation of all measurements.
 tbodyacc_z.mean   |Double			|-1.0 - 1.0	 | Variable names have been modified 
@@ -102,7 +102,7 @@ fbodybodygyromag.std  |Double			|-1.0 - 1.0	 |
 fbodybodygyrojerkmag.mean |Double			|-1.0 - 1.0	 |
 fbodybodygyrojerkmag.std  |Double			|-1.0 - 1.0	 |
 
-## Description of Variables -- summary data set (tidyData_summary.csv)
+## Description of Variables -- summary data set (([tidyData_summary.csv](tidyData_summary.csv)))
 This data set contains the average value for each measurement grouped by subject and activity.
 
 Name						|Type				|Values					|Description
